@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
 
 export default class Calendar extends Component {
+    constructor(){
+        super();
+
+
+        this.weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
+             'Thursday', 'Friday', 'Saturday'];
+        this.months = ['January', 'February', 'March', 'April', 'May', 'June', 
+            'July', 'August', 'September', 'October', 'November', 'December'];
+
+        this.state = {
+            currentDay: new Date()
+        }
+    }
     render() {
         return (
-                <h1>Calendar</h1>
+            <div>
+                <h1>Calendar Component</h1>
+                <h2>{this.months[this.state.currentDay.getMonth()]} {this.state.currentDay.getFullYear()}</h2>
+            </div>
+                
         )
     }
 }
