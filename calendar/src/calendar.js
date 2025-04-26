@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CalendarDays from './calendar-days';
 
 export default class Calendar extends Component {
     constructor(){
@@ -17,14 +18,39 @@ export default class Calendar extends Component {
             currentDay: new Date()
         }
     }
+
+    changeCurrentDay = (day) => {
+        this.setState({currentDay: new Date(day.year, day.month, day.number)});
+    }
+
     render() {
         return (
-            <div>
-                <h1>Calendar Component</h1>
+            <div className="calendar">
+                <div className="calendar-header">
                 <h2>{this.months[this.state.currentDay.getMonth()]} {this.state.currentDay.getFullYear()}</h2>
                 <h2>{this.state.currentDay.getFullYear()} {this.months_jp[this.state.currentDay.getMonth()]}</h2>
+                </div>
+            <div className="calendar-body">
+                <div className="table-header"> 
+                    {
+                        this.weekdays.map((weekday) => {
+                            return <div className="weekday"><p>{weekday}</p></div>
+
+                        })
+                        
+                    }
+                    {
+                        this.weekdays_jp.map((weekday) => {
+                            return <div className="weekday"><p>{weekday}</p></div>
+
+                        })
+                    }
+                    </div>
+                <div className="table">
+                     <CalendarDays day={this.state.currentDay} changeCurrentDay={this.changeCurrentDay}/>
+                </div>
             </div>
-                
+            </div>
         )
     }
 }
